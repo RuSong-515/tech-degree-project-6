@@ -53,6 +53,26 @@ function checkLetter(keyClick) {
   return letterMatched;
 }
 
+function winOrLose(missed) {
+  const lettersShown = document.querySelectorAll('.show');
+    const letterDisplayed = document.querySelectorAll('.letter');
+    const text = document.querySelector('.title');
+    const reset = document.querySelector('.btn__reset');
+
+    if (letterDisplayed.length === lettersShown.length) {
+      overlay.className = 'win';
+      overlay.style.display = '';
+      text.innerHTML = ('You win. Congratulations!');
+      reset.textContent = 'Play again';
+
+    } else if (missed >= 5){
+      overlay.className = 'lose';
+      overlay.style.display = '';
+      text.innerHTML = ('Sorry, You lose. ');
+      reset.textContent = 'Try again';
+    }
+}
+
 qwerty.addEventListener('click', (e) => {
   const buttonClick = e.target;
   if (buttonClick.tagName === 'BUTTON') {
@@ -70,4 +90,8 @@ qwerty.addEventListener('click', (e) => {
       ol.removeChild(li);
     }
   }
+    winOrLose(missed);
 })
+
+
+
