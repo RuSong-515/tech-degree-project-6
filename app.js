@@ -43,9 +43,9 @@ addPhraseToDisplay(phraseArray);
 
 function checkLetter(keyClick) {
   const letterDisplayed = document.querySelectorAll('.letter');
-  const letterMatched = null;
+  let letterMatched = null;
   for (let i = 0; i < letterDisplayed.length; i++) {
-    if (letterDisplayed[i].textContent === keyClick) {
+    if (letterDisplayed[i].textContent.toLowerCase() === keyClick) {
       letterDisplayed[i].classList.add('show');
       letterMatched = keyClick;
     }
@@ -55,12 +55,19 @@ function checkLetter(keyClick) {
 
 qwerty.addEventListener('click', (e) => {
   const buttonClick = e.target;
-  
   if (buttonClick.tagName === 'BUTTON') {
     buttonClick.classList.add('chosen');
     buttonClick.setAttribute('disabled', '');
 
     let letterClick = buttonClick.textContent;
     let letterFound = checkLetter(letterClick);
+
+    if (letterFound === null) {
+      const scoreboard = document.getElementById('scoreboard');
+      const li = document.querySelectorAll('li.tries')[0];
+      const ol = li.parentNode;
+      missed++;
+      ol.removeChild(li);
+    }
   }
 })
