@@ -16,6 +16,8 @@ const phrases = [
 resetButton.addEventListener('click', (e) => {
   const button = e.target;
   const ul = document.querySelector('#phrase ul');
+  const overlay = document.querySelector('#overlay');
+
   let phraseArray = getRandomPhraseAsArray(phrases);
   
   if (button.textContent === 'Play again') {
@@ -44,6 +46,11 @@ resetButton.addEventListener('click', (e) => {
       ol.appendChild(li);
       li.classList.add('tries');
     }
+
+    // reset overlay
+    const p = document.querySelector('p');
+
+    overlay.removeChild(p);
 
     addPhraseToDisplay(phraseArray);
 
@@ -131,6 +138,8 @@ qwerty.addEventListener('click', (e) => {
   }
   winOrLose(missed);
 })
+
+
 
 
 

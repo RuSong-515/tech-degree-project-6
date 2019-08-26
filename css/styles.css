@@ -92,9 +92,16 @@ button {
   width: 15px;
 }
 
+li {
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-delay: 0.5s; 
+}
+
 .show {
   color: #000;
   background-color: #76CE82;
+  transform: rotate(360deg);
 }
 
 /* Keyboard */
@@ -132,6 +139,7 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  z-index: 1000;
 }
 
 .title {
